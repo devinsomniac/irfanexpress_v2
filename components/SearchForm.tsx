@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import { Input } from './ui/input'
 import { Button } from './ui/button'
 import { IoSearchSharp } from "react-icons/io5";
-import { useLoadScript } from "@react-google-maps/api";
 import {
     Select,
     SelectContent,
