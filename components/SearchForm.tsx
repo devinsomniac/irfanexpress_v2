@@ -11,7 +11,6 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import { chatSession } from '@/Services/aimodel';
-import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 
 interface FormData {
     destination: string,
