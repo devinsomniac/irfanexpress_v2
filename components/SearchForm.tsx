@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { Input } from './ui/input'
 import { Button } from './ui/button'
 import { IoSearchSharp } from "react-icons/io5";
+import { useLoadScript } from "@react-google-maps/api";
 import {
     Select,
     SelectContent,
@@ -10,41 +11,61 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
+import { chatSession } from '@/Services/aimodel';
+import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 
 interface FormData {
-    destination: string;
-    nod: string;
-    budget: string;
-    companions: string;
+    destination: string,
+    nod: number,
+    budget: string,
+    comapanions: string
 }
 
-const SearchForm: React.FC = () => {
+const SearchForm = () => {
+    const promt = "Generate Travel Plan for Location: {location} for {days} Days for {companions} with a {budget} budget, Give me a  itinerary with placeName, Place Details, ticket Pricing(if not available type - Check Official website), Time  travel each of the location for 3 days with each day plan with best time to visit in and also speciallity of the location the user has requested like {location} in this case like transportation, food, clothes, etc JSON format."
     const [formData, setFormData] = useState<FormData>({
         destination: '',
-        nod: '',
+        nod: 0,
         budget: '',
-        companions: ''
-    });
+        comapanions: ''
+    })
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setFormData((prev) => ({
-            ...prev,
-            [name]: value
-        }));
-    };
+        const { name, value } = e.target
+        setFormData((prev) => (
+            {
+                ...prev,
+                [name]: value
+            }
+        ))
+
+    }
 
     const handleSelectChange = (name: keyof FormData, value: string) => {
-        setFormData((prev) => ({
-            ...prev,
-            [name]: value
-        }));
-    };
+        setFormData((prev) => (
+            {
+                ...prev,
+                [name]: value
+            }
+        ))
+    }
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        console.log("Form Data:", formData);
-    };
+    const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        console.log(formData)
+        const Final_Prompt = promt
+            .replace('{location}', formData?.destination)
+            .replace('{days}', String(formData?.nod))
+            .replace('{companions}', formData?.comapanions)
+            .replace('{budget}', formData?.budget)
+        console.log(Final_Prompt)
+
+        const result = await chatSession.sendMessage(Final_Prompt)
+        console.log(result?.response?.text())
+
+
+
+    }
 
     return (
         <form
@@ -54,17 +75,20 @@ const SearchForm: React.FC = () => {
                 type='text'
                 placeholder='Destination'
                 className='rounded-full w-[200px]'
-                onChange={handleChange}
                 name='destination'
                 value={formData.destination}
+                onChange={handleChange}
+                
             />
+        
             <Input
                 type='number'
                 placeholder='Number of Days'
                 className='rounded-full w-[200px]'
-                onChange={handleChange}
                 name='nod'
                 value={formData.nod}
+                onChange={handleChange}
+
             />
             <Select onValueChange={(value) => handleSelectChange('budget', value)}>
                 <SelectTrigger className="w-[180px] rounded-full">
@@ -77,7 +101,7 @@ const SearchForm: React.FC = () => {
                 </SelectContent>
             </Select>
 
-            <Select onValueChange={(value) => handleSelectChange('companions', value)}>
+            <Select onValueChange={(value) => handleSelectChange('comapanions', value)} >
                 <SelectTrigger className="w-[180px] rounded-full">
                     <SelectValue placeholder="Companions" />
                 </SelectTrigger>
@@ -88,7 +112,7 @@ const SearchForm: React.FC = () => {
                     <SelectItem value="Friends">Friends</SelectItem>
                 </SelectContent>
             </Select>
-            <Button type="submit" className='rounded-full bg-yellow-400 text-black'>
+            <Button type="submit" className='rounded-full bg-yellow-400 text-black hover:bg-red-600 hover:text-yellow-400' >
                 Generate
                 <IoSearchSharp />
             </Button>
@@ -97,3 +121,4 @@ const SearchForm: React.FC = () => {
 }
 
 export default SearchForm;
+
