@@ -6,7 +6,7 @@ import {
 } from "@google/generative-ai";
 
 console.log("Gemini api is : ", process.env.GEMINI_API_KEY)
-const apiKey = 'AIzaSyD0jZ0RipkKQqdBST7Nl24LU3CXCNcp5Zg';
+const apiKey = process.env.GEMINI_API_KEY!;
 console.log(apiKey)
 const genAI = new GoogleGenerativeAI(apiKey);
 
