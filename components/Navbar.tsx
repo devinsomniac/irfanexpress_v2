@@ -24,7 +24,8 @@ const Navbar = async () => {
           <li>About</li>
           <li>Contact Us</li>
         </ul>
-        {session ? (
+        {session && session?.user ? (
+
           <form action={async () => {
             "use server";
             await signOut({ redirectTo: "/" });
@@ -51,7 +52,7 @@ const Navbar = async () => {
             <DropdownMenuItem>About</DropdownMenuItem>
             <DropdownMenuItem>
 
-            {session ? (
+            {session && session?.user ? (
           <form action={async () => {
             "use server";
             await signOut({ redirectTo: "/" });
