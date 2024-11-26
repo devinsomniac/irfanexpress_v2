@@ -49,7 +49,24 @@ const Navbar = async () => {
             <DropdownMenuItem>Appointment</DropdownMenuItem>
             <DropdownMenuItem>Billing</DropdownMenuItem>
             <DropdownMenuItem>About</DropdownMenuItem>
-            <DropdownMenuItem>Log In</DropdownMenuItem>
+            <DropdownMenuItem>
+
+            {session ? (
+          <form action={async () => {
+            "use server";
+            await signOut({ redirectTo: "/" });
+          }}>
+            <Button type='submit'>Log Out</Button>
+          </form>
+        ) : (
+          <form action={async () => {
+            "use server";
+            await signIn("google");
+          }}>
+            <Button type='submit'>Log In</Button>
+          </form>
+        )}
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
