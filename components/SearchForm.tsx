@@ -68,7 +68,7 @@ const SearchForm = () => {
     return (
         <form
             onSubmit={handleSubmit}
-            className='p-5 flex flex-col md:flex-row gap-1 bg-white rounded-2xl md:rounded-full mt-20 border-[1px]'>
+            className='p-5 flex flex-col md:flex-row gap-1 bg-white rounded-2xl md:rounded-full mt-20 border-[2px] border-black'>
             <Input
                 type='text'
                 placeholder='Destination'
@@ -89,7 +89,7 @@ const SearchForm = () => {
 
             />
             <Select onValueChange={(value) => handleSelectChange('budget', value)}>
-                <SelectTrigger className="w-[180px] rounded-full">
+                <SelectTrigger className="w-full md:w-[180px] rounded-full">
                     <SelectValue placeholder="Budget" />
                 </SelectTrigger>
                 <SelectContent>
@@ -100,7 +100,7 @@ const SearchForm = () => {
             </Select>
 
             <Select onValueChange={(value) => handleSelectChange('comapanions', value)} >
-                <SelectTrigger className="w-[180px] rounded-full">
+                <SelectTrigger className="w-full md:w-[180px] rounded-full">
                     <SelectValue placeholder="Companions" />
                 </SelectTrigger>
                 <SelectContent>
