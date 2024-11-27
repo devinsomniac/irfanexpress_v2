@@ -11,6 +11,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { auth, signIn, signOut } from '@/auth';
+import { FcGoogle } from "react-icons/fc";
+import { IoIosLogOut } from "react-icons/io";
+
 
 const Navbar = async () => {
   const session = await auth();
@@ -18,7 +21,7 @@ const Navbar = async () => {
     <div className='p-2 flex justify-between items-center'>
       <Image src={"/logo.png"} alt='logo' height={100} width={100} />
       <div className='justify-between items-center w-full hidden md:flex'>
-        <ul className='flex gap-4 ml-[400px]'>
+        <ul className='flex gap-4 md:ml-[500px] lg:ml-[500px]'>
           <li>Home</li>
           <li>Appointment</li>
           <li>About</li>
@@ -30,14 +33,19 @@ const Navbar = async () => {
             "use server";
             await signOut({ redirectTo: "/" });
           }}>
-            <Button type='submit'>Log Out</Button>
+            <Button type='submit' className='bg-white rounded-full border-[2px] hover:bg-white text-black'>
+              <IoIosLogOut />
+
+            </Button>
           </form>
         ) : (
           <form action={async () => {
             "use server";
             await signIn("google");
           }}>
-            <Button type='submit'>Log In</Button>
+            <Button type='submit' className='bg-white rounded-full border-[2px] hover:bg-white'>
+              <FcGoogle />
+            </Button>
           </form>
         )}
       </div>
@@ -52,21 +60,26 @@ const Navbar = async () => {
             <DropdownMenuItem>About</DropdownMenuItem>
             <DropdownMenuItem>
 
-            {session && session?.user ? (
-          <form action={async () => {
-            "use server";
-            await signOut({ redirectTo: "/" });
-          }}>
-            <Button type='submit'>Log Out</Button>
-          </form>
-        ) : (
-          <form action={async () => {
-            "use server";
-            await signIn("google");
-          }}>
-            <Button type='submit'>Log In</Button>
-          </form>
-        )}
+              {session && session?.user ? (
+                <form action={async () => {
+                  "use server";
+                  await signOut({ redirectTo: "/" });
+                }}>
+                  <Button type='submit' className='bg-white rounded-full border-[2px] hover:bg-white text-black'>
+                    <IoIosLogOut />
+
+                  </Button>
+                </form>
+              ) : (
+                <form action={async () => {
+                  "use server";
+                  await signIn("google");
+                }}>
+                  <Button type='submit' className='bg-white rounded-full border-[2px] hover:bg-white'>
+                    <FcGoogle />
+                  </Button>
+                </form>
+              )}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
