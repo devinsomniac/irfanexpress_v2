@@ -29,12 +29,8 @@ const Page: React.FC = () => {
     return <div>Loading...</div>;
   }
 
-  let parsedData: { tripName: string; notes: string; days: Day[] };
-  try {
-    parsedData = JSON.parse(decodeURIComponent(pageData));
-  } catch {
-    parsedData = pageData as any; 
-  }
+  const parsedData: { tripName: string; notes: string; days: Day[] } = JSON.parse(decodeURIComponent(pageData));
+ 
 
   return (
     <div className='m-8'>
