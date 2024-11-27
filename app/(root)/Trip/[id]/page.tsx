@@ -4,6 +4,23 @@ import React from 'react';
 import { useSearchParams } from 'next/navigation';
 import TripDaysCard from '@/components/TripDaysCard';
 
+interface Plan {
+  time: string;
+  placeName: string;
+  placeDetails: string;
+  ticketPricing: string;
+  transportation: string;
+  speciality: string;
+}
+
+interface Day {
+  day: string;
+  theme: string;
+  plan: Plan[];
+  food: string;
+  clothing: string;
+}
+
 const Page: React.FC = () => {
   const searchParams = useSearchParams();
   const pageData = searchParams.get('pageData');
@@ -12,11 +29,11 @@ const Page: React.FC = () => {
     return <div>Loading...</div>;
   }
 
-  let parsedData;
+  let parsedData: { tripName: string; notes: string; days: Day[] };
   try {
     parsedData = JSON.parse(decodeURIComponent(pageData));
   } catch {
-    parsedData = pageData;
+    parsedData = pageData as any; 
   }
 
   return (
@@ -26,7 +43,7 @@ const Page: React.FC = () => {
       </div>
       <p className='font-bold text-gray-600 m-2'>* {parsedData.notes}</p>
       <div>
-        {parsedData.days.map((day: { day: string; theme: string; plan: any[]; food: string; clothing: string }, index: number) => (
+        {parsedData.days.map((day: Day, index: number) => (
           <div key={index}>
             <TripDaysCard day={day} />
           </div>
