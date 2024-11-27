@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/select"
 import { chatSession } from '@/Services/aimodel';
 import { useRouter } from 'next/navigation';
+import { TbFidgetSpinner } from "react-icons/tb";
 
 
 
@@ -31,6 +32,7 @@ const SearchForm = () => {
         budget: '',
         comapanions: ''
     })
+    const [loading, setLoading] = useState(false);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
@@ -54,20 +56,28 @@ const SearchForm = () => {
 
     const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault()
-        console.log(formData)
-        const Final_Prompt = promt
-            .replace('{location}', formData?.destination)
-            .replace('{days}', String(formData?.nod))
-            .replace('{companions}', formData?.comapanions)
-            .replace('{budget}', formData?.budget)
-        console.log(Final_Prompt)
+        setLoading(true);
+        try {
+            console.log(formData)
+            const Final_Prompt = promt
+                .replace('{location}', formData?.destination)
+                .replace('{days}', String(formData?.nod))
+                .replace('{companions}', formData?.comapanions)
+                .replace('{budget}', formData?.budget)
+            console.log(Final_Prompt)
 
-        const result = await chatSession.sendMessage(Final_Prompt)
-        console.log(result?.response?.text())
-        const resultText =  result.response.text();
+            const result = await chatSession.sendMessage(Final_Prompt)
+            console.log(result?.response?.text())
+            const resultText = result.response.text();
 
-        // Navigate to the dynamic page with the result as a query parameter
-        router.push(`/Trip/5?pageData=${encodeURIComponent(resultText)}`);
+            // Navigate to the dynamic page with the result as a query parameter
+            router.push(`/Trip/5?pageData=${encodeURIComponent(resultText)}`);
+        } catch (err) {
+            console.log("There has been an error ", err)
+        } finally {
+            setLoading(false)
+        }
+
 
 
 
@@ -84,9 +94,9 @@ const SearchForm = () => {
                 name='destination'
                 value={formData.destination}
                 onChange={handleChange}
-                
+
             />
-        
+
             <Input
                 type='number'
                 placeholder='Number of Days'
@@ -118,9 +128,15 @@ const SearchForm = () => {
                     <SelectItem value="Friends">Friends</SelectItem>
                 </SelectContent>
             </Select>
-            <Button type="submit" className='rounded-full bg-yellow-400 text-black hover:bg-red-600 hover:text-yellow-400' >
-                Generate
-                <IoSearchSharp />
+            <Button type="submit" disabled={loading} className='rounded-full bg-yellow-400 text-black hover:bg-red-600 hover:text-yellow-400' >
+                {loading ? (
+                    <TbFidgetSpinner className='animate-spin text-black' />
+                ) : (
+                    <>
+                        Generate
+                        <IoSearchSharp />
+                    </>
+                )}
             </Button>
         </form>
     );
