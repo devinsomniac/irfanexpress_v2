@@ -4,7 +4,7 @@ interface Plan {
     placeName: string;
     placeDetails: string;
     ticketPricing: string;
-    transportation: string;
+    transportation: string; 
     speciality: string;
 }
 
