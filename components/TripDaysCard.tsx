@@ -21,6 +21,7 @@ interface TripDaysCardProps {
 }
 
 const TripDaysCard: React.FC<TripDaysCardProps> = ({ day }) => {
+  
   return (
     <div className="day-card p-4 border-[2px] border-black m-2 rounded-3xl ">
       <h2 className='font-semibold text-2xl '>Day - {day.day}</h2>

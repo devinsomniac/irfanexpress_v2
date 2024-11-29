@@ -75,10 +75,11 @@ const SearchForm = () => {
             const result = await chatSession.sendMessage(Final_Prompt)
             console.log(result?.response?.text())
             const resultText = result.response.text();
-            SaveTrip(resultText)
+            const docId = Date.now().toString()
+            SaveTrip(resultText,docId)
 
             // Navigate to the dynamic page with the result as a query parameter
-            router.push(`/Trip/5?pageData=${encodeURIComponent(resultText)}`);
+            router.push(`/Trip/${docId}`);
         } catch (err) {
             console.log("There has been an error ", err)
         } finally {
@@ -86,14 +87,14 @@ const SearchForm = () => {
         }
     }
 
-    const SaveTrip = async(TripData : string) => {
+    const SaveTrip = async(TripData : string,docId : string) => {
         let userInformation
         if (session?.user){
             userInformation = session.user
         }else{
             userInformation = uuidv4()
         }
-        const docId = Date.now().toString()
+        
         await setDoc(doc(db, "AITrips", docId), {
             userSelection : formData,
             tripData : TripData,
