@@ -25,20 +25,7 @@ interface FormData {
     comapanions: string
 }
 
-interface Day {
-    day: string;
-    theme: string;
-    plan: Array<{
-      time: string;
-      placeName: string;
-      placeDetails: string;
-      ticketPricing: string;
-      transportation: string;
-      speciality: string;
-    }>;
-    food: string;
-    clothing: string;
-  }
+
   
 
 const SearchForm = () => {
