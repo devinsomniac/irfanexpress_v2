@@ -86,7 +86,7 @@ const SearchForm = () => {
         }
     }
 
-    const SaveTrip = async(TripData : String) => {
+    const SaveTrip = async(TripData : string) => {
         let userInformation
         if (session?.user){
             userInformation = session.user
