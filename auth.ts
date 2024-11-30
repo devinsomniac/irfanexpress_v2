@@ -9,7 +9,7 @@ import { neon} from '@neondatabase/serverless';
 import * as schema from './app/Database/schema'
 import GoogleProvider from 'next-auth/providers/google'
 
-const db = drizzle(neon(process.env.AUTH_DRIZZLE_URL!),{schema});
+const db = drizzle(neon(process.env.DATABASE_URL!),{schema});
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [GoogleProvider({
     clientId: process.env.AUTH_GOOGLE_ID,
