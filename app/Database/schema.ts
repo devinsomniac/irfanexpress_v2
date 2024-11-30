@@ -1,12 +1,10 @@
 
 import {
-    serial,
     timestamp,
     pgTable,
     text,
     primaryKey,
     integer,
-    date,
   } from "drizzle-orm/pg-core"
   import type { AdapterAccountType } from "next-auth/adapters" 
   
