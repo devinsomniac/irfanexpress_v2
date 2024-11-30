@@ -1,17 +1,15 @@
 import React from 'react'
-import Image from 'next/image'
 import SearchForm from './SearchForm'
 const Hero = () => {
   return (
-    <div className='p-10 flex justify-center items-center flex-col bg-slate-100 h-[700px]'>
-        <div className='font-bold flex flex-col justify-center items-center'>
-            <h1 className='text-4xl text-center'>Find The best <span className='text-orange-500'>destination</span> for you with us.</h1>
-            <h2 className='text-2xl text-center'>Get Your <span className='text-orange-400'>Dream</span> Travel Adventure!</h2>
+    <div className='py-8 flex justify-center items-center flex-col '>
+        <div className='mt-12 font-bold flex flex-col justify-start items-center md:items-start lg:items-start text-blue-950 px-4'>
+            <h1 className='text-2xl md:text-7xl text-left'>Find The  <span className='text-[#fffbcc] bg-blue-950 p-1 rounded-lg'>Best Destination .</span></h1>
+            <h2 className='text-xl md:text-6xl text-left mt-2 md:mt-12'>Get Your  <span className='text-[#fffbcc] bg-blue-950 p-1 rounded-lg'>Dream Travel Adventure !</span></h2>
         </div>
-        <div>
+        <div >
             <SearchForm/>
         </div>
-        <Image src={"/Hero.png"} alt='Hero' width={1000} height={500} className='mt-24 w-full'/>
     </div>
   )
 }

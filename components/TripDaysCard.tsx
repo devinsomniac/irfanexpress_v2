@@ -23,7 +23,7 @@ interface TripDaysCardProps {
 const TripDaysCard: React.FC<TripDaysCardProps> = ({ day }) => {
   
   return (
-    <div className="day-card p-4 border-[2px] border-black m-2 rounded-3xl ">
+    <div className="day-card p-4 border-[2px] border-black m-2 rounded-3xl bg-slate-100 ">
       <h2 className='font-semibold text-2xl '>Day - {day.day}</h2>
       <h3 className='font-semibold text-xl mt-2 mb-2'>Theme -  {day.theme}</h3>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-2'>

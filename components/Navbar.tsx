@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 import { Button } from './ui/button';
 import {
   DropdownMenu,
@@ -13,15 +12,15 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { auth, signIn, signOut } from '@/auth';
 import { FcGoogle } from "react-icons/fc";
 import { IoIosLogOut } from "react-icons/io";
-
+import Image from 'next/image';
 
 const Navbar = async () => {
   const session = await auth();
   return (
-    <div className='p-2 flex justify-between items-center'>
+    <div className='p-2 flex justify-between items-center bg-blue-100'>
       <Image src={"/logo.png"} alt='logo' height={100} width={100} />
       <div className='justify-between items-center w-full hidden md:flex'>
-        <ul className='flex gap-4 md:ml-[500px] lg:ml-[500px]'>
+        <ul className='flex gap-4 md:ml-[500px] lg:ml-[500px] text-lg'>
           <li>Home</li>
           <li>Appointment</li>
           <li>About</li>
@@ -29,6 +28,10 @@ const Navbar = async () => {
         </ul>
         {session && session?.user ? (
 
+          <div className='flex gap-2'>
+            <div >
+          <Image src={session?.user?.image as string} alt='Profile' height={40} width={40} className='rounded-full border-[2px] border-white'/>
+          </div>
           <form action={async () => {
             "use server";
             await signOut({ redirectTo: "/" });
@@ -38,6 +41,9 @@ const Navbar = async () => {
 
             </Button>
           </form>
+          
+          </div>
+          
         ) : (
           <form action={async () => {
             "use server";
