@@ -5,6 +5,7 @@ import {
     text,
     primaryKey,
     integer,
+    serial,
   } from "drizzle-orm/pg-core"
   import type { AdapterAccountType } from "next-auth/adapters" 
   
@@ -17,6 +18,13 @@ import {
     emailVerified: timestamp("emailVerified", { mode: "date" }),
     image: text("image"),
   })
+
+  export const trips = pgTable('trips',{
+    serial : serial("serial").primaryKey(),
+    tripId : text("tripId").notNull().unique(),
+    userId : text("userId").notNull().references(() => users.id,{onDelete : "cascade"})
+  })
+
   
   export const accounts = pgTable(
     "account",
@@ -49,4 +57,6 @@ import {
       .references(() => users.id, { onDelete: "cascade" }),
     expires: timestamp("expires", { mode: "date" }).notNull(),
   })
+
+  
   

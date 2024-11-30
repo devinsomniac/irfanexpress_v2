@@ -13,6 +13,7 @@ import { auth, signIn, signOut } from '@/auth';
 import { FcGoogle } from "react-icons/fc";
 import { IoIosLogOut } from "react-icons/io";
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Navbar = async () => {
   const session = await auth();
@@ -29,9 +30,12 @@ const Navbar = async () => {
         {session && session?.user ? (
 
           <div className='flex gap-2'>
+            <Link href={`/Profile/${session?.user?.id}`}>
             <div >
           <Image src={session?.user?.image as string} alt='Profile' height={40} width={40} className='rounded-full border-[2px] border-white'/>
           </div>
+            </Link>
+            
           <form action={async () => {
             "use server";
             await signOut({ redirectTo: "/" });
