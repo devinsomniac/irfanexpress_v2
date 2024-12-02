@@ -76,7 +76,8 @@ const SearchForm = () => {
             console.log(result?.response?.text())
             const resultText = result.response.text();
             const docId = Date.now().toString()
-            SaveTrip(resultText,docId)
+            const resultJson = JSON.parse(resultText)
+            SaveTrip(resultJson,docId)
 
             // Navigate to the dynamic page with the result as a query parameter
             router.push(`/Trip/${docId}`);

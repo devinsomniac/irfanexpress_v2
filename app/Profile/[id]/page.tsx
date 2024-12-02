@@ -4,7 +4,7 @@ import { db as postDb} from '@/app/Database'
 import { trips, users } from '@/app/Database/schema'
 import { eq } from 'drizzle-orm'
 import TripsCard from '@/components/TripsCard'
-import { collection, Firestore, getDoc, query, where } from 'firebase/firestore'
+import { collection, Firestore, getDoc, getDocs, query, where } from 'firebase/firestore'
 import { db as fireDb} from '@/Services/FirebaseConfig'
 const page = async () => {
     const session = await auth()
@@ -24,10 +24,20 @@ const page = async () => {
     if (tripIds.length > 0) {
         const tripsQuery = query(
             collection(fireDb, 'AITrips'),
-            where('id', 'in', tripIds) 
+            where('__name__', 'in', tripIds) 
         )
+
+        const querySnapshot = await getDocs(tripsQuery)
+        tripData = querySnapshot.docs.map((doc) => (
+            {
+                id:doc.id,
+                ...doc.data()
+            }    
+        ))
         
     } 
+
+    console.log("Trip Data : ",tripData[0].tripData)
       
 
     console.log(responseFromDb)
