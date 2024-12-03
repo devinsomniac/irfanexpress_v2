@@ -1,6 +1,5 @@
 import React from 'react'
 import Image from 'next/image'
-import { Loader } from "@googlemaps/js-api-loader"
 const Footer = () => {
   return (
     <div className='bg-blue-950 flex flex-col md:flex-row gap-6 items-center justify-between p-10'>
