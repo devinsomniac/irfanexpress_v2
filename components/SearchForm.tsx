@@ -104,7 +104,6 @@ const SearchForm = () => {
         }else{
             userInformation = uuidv4()
         }
-        const parseddata = JSON.parse(TripData)
         await setDoc(doc(fireDb, "AITrips", docId), {
             userSelection : formData,
             tripData : TripData,
