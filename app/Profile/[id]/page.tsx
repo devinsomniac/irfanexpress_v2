@@ -6,6 +6,7 @@ import { eq } from 'drizzle-orm';
 import TripsCard from '@/components/TripsCard';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db as fireDb } from '@/Services/FirebaseConfig';
+import Link from 'next/link';
 
 interface TripData {
   id: string;
@@ -61,9 +62,13 @@ const page = async () => {
       </div>
       <div className='grid grid-cols-1 md:grid-cols-3 gap-4 p-4'>
         {tripData.map((trip, index) => (
+          
           <div key={index} className='flex justify-center items-center'>
-            <TripsCard trip={trip} /> {/* Pass the updated trip object */}
+            <Link href={`/Trip/${trip.id}`}>
+            <TripsCard trip={trip} /> 
+            </Link>
           </div>
+          
         ))}
       </div>
     </div>

@@ -1,6 +1,9 @@
+@import "../node_modules/slick-carousel/slick/slick.css";
+@import "../node_modules/slick-carousel/slick/slick-theme.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -58,12 +61,12 @@
   * {
     @apply border-border;
   }
-  body {
+  /* body {
     @apply bg-background text-foreground;
     background-image: url('/bg.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-  }
+  } */
 }
 
 
