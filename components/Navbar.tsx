@@ -18,42 +18,52 @@ import Link from 'next/link';
 const Navbar = async () => {
   const session = await auth();
   return (
-    <div className='p-2 flex justify-between items-center bg-blue-100'>
-      <Image src={"/logo.png"} alt='logo' height={100} width={100} />
-      <div className='justify-between items-center w-full hidden md:flex'>
-        <ul className='flex gap-4 md:ml-[500px] lg:ml-[500px] text-lg'>
+    <div className='p-2 flex justify-between items-center bg-blue-50'>
+      <div>
+      <Link href={'/'}>
+        <Image src={"/logo.png"} alt='logo' height={100} width={100} />
+        </Link>
+      </div>
+      <div className='justify-between items-center  hidden md:flex'>
+        <ul className='flex gap-4 justify-center items-center text-lg'>
+          <Link href={'/'}>
           <li>Home</li>
+          </Link>
+          <Link href={'/Appointment'}>
           <li>Appointment</li>
+          </Link>
           <li>About</li>
           <li>Contact Us</li>
         </ul>
+      </div>
+      <div>
         {session && session?.user ? (
 
           <div className='flex gap-2'>
             <Link href={`/Profile/${session?.user?.id}`}>
-            <div >
-          <Image src={session?.user?.image as string} alt='Profile' height={40} width={40} className='rounded-full border-[2px] border-white'/>
-          </div>
+              <div >
+                <Image src={session?.user?.image as string} alt='Profile' height={40} width={40} className='rounded-full border-[2px] border-white' />
+              </div>
             </Link>
-            
-          <form action={async () => {
-            "use server";
-            await signOut({ redirectTo: "/" });
-          }}>
-            <Button type='submit' className='bg-white rounded-full border-[2px] hover:bg-white text-black'>
-              <IoIosLogOut />
 
-            </Button>
-          </form>
-          
+            <form action={async () => {
+              "use server";
+              await signOut({ redirectTo: "/" });
+            }}>
+              <Button type='submit' className='bg-white rounded-full border-[2px] hover:bg-white text-black'>
+                <IoIosLogOut />
+
+              </Button>
+            </form>
+
           </div>
-          
+
         ) : (
           <form action={async () => {
             "use server";
             await signIn("google");
           }}>
-            <Button type='submit' className='bg-white rounded-full border-[2px] hover:bg-white'>
+            <Button type='submit' className='bg-white rounded-full border-[2px] hover:bg-white hidden md:block'>
               <FcGoogle />
             </Button>
           </form>

@@ -14,7 +14,8 @@ const Hero = () => {
     >
         <div className='md:mt-8 font-bold flex flex-col text-[#ffe900] px-4'>
             <h1 className='text-2xl  mb-2 md:text-6xl text-left'>Create a <span className='text-[#fffbcc] bg-blue-950 p-1 rounded-lg'>personalized itinerary</span>  </h1>
-            <h2 className='text-xl md:text-4xl text-right mt-2 md:mt-12'><span className='text-[#fffbcc] bg-blue-950 p-1 rounded-lg'>for your <span className='text-[#ffe900]'>dream vacation.</span> </span></h2>
+            <h2 className='text-xl md:text-4xl text-left mt-2 md:mt-12'><span className='text-[#fffbcc] bg-blue-950 p-1 rounded-lg'>for your <span className='text-[#ffe900]'>dream vacation.</span> </span></h2>
+            <h3 className='text-xl md:text-2xl text-left mt-2 md:mt-12 text-[#ffe900]'><span className='bg-blue-950 p-1'>With Us.</span></h3>
         </div>
         <div >
             <SearchForm/>
