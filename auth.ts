@@ -2,7 +2,7 @@ import NextAuth from "next-auth";
 // import Google from "next-auth/providers/google";
 // // import { db } from "./Database";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
-import { users, accounts } from "./app/Database/schema"; // Import the schema
+import { users, accounts ,sessions} from "./app/Database/schema"; // Import the schema
 import { eq } from "drizzle-orm"; // Import eq for filtering
 import { drizzle } from 'drizzle-orm/neon-http';
 import { neon} from '@neondatabase/serverless';
@@ -26,6 +26,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: DrizzleAdapter(db, {
     usersTable: users,
     accountsTable: accounts,
+    sessionsTable : sessions
   }),
   callbacks: {
     async session({ session, user }) {
@@ -43,5 +44,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
       return session;
     },
+  },
+  session: {
+    strategy: "database", // Use database strategy to persist sessions in the DB
+    maxAge: 60 * 60, // Set session expiration time in seconds (60 minutes = 3600 seconds)
+    updateAge: 0, // Prevent extending the session duration automatically
   },
 });
