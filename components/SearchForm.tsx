@@ -14,9 +14,11 @@ import { chatSession } from '@/Services/aimodel';
 import { useRouter } from 'next/navigation';
 import { TbFidgetSpinner } from "react-icons/tb";
 import { doc, setDoc } from "firebase/firestore"; 
-import { db } from '@/Services/FirebaseConfig';
+import { db as fireDb } from '@/Services/FirebaseConfig';
 import {v4 as uuidv4} from 'uuid'
 import {useSession} from 'next-auth/react'
+import { db as postDb } from '@/app/Database';
+import { trips } from '@/app/Database/schema';
 
 interface FormData {
     destination: string,
@@ -74,10 +76,17 @@ const SearchForm = () => {
 
             const result = await chatSession.sendMessage(Final_Prompt)
             console.log(result?.response?.text())
-            const resultText = result.response.text();
+            const resultText = await result.response.text();
+            console.log(resultText)
             const docId = Date.now().toString()
             const resultJson = JSON.parse(resultText)
             SaveTrip(resultJson,docId)
+            if(session?.user?.id){
+                await postDb.insert(trips).values({
+                    tripId:docId,
+                    userId : session.user.id
+                })
+            }
 
             // Navigate to the dynamic page with the result as a query parameter
             router.push(`/Trip/${docId}`);
@@ -88,15 +97,15 @@ const SearchForm = () => {
         }
     }
 
-    const SaveTrip = async(TripData : string,docId : string) => {
+    const SaveTrip = async(TripData :string ,docId : string) => {
         let userInformation
         if (session?.user){
             userInformation = session.user
         }else{
             userInformation = uuidv4()
         }
-        
-        await setDoc(doc(db, "AITrips", docId), {
+        const parseddata = JSON.parse(TripData)
+        await setDoc(doc(fireDb, "AITrips", docId), {
             userSelection : formData,
             tripData : TripData,
             userInfo : userInformation,
