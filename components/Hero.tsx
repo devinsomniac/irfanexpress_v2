@@ -1,5 +1,5 @@
 import React from 'react'
-import SearchForm from './SearchForm'
+// import SearchForm from './SearchForm'
 import HeroImageUrl from '@/public/HeroImages/HeroImagesArray'
 const Hero = () => {
   const randomImage = HeroImageUrl[1];
@@ -18,7 +18,7 @@ const Hero = () => {
             <h3 className='text-xl md:text-2xl text-left mt-2 md:mt-12 text-[#ffe900]'><span className='bg-blue-950 p-1'>With Us.</span></h3>
         </div>
         <div >
-            <SearchForm/>
+            {/* <SearchForm/> */}
         </div>
     </div>
   )

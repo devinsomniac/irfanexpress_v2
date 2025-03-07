@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@auth/drizzle-adapter": "^1.7.4",
+    "@auth/drizzle-adapter": "^1.8.0",
     "@google/generative-ai": "^0.21.0",
     "@googlemaps/js-api-loader": "^1.16.8",
     "@neondatabase/serverless": "^0.10.4",
