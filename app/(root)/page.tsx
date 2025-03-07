@@ -9,10 +9,10 @@ export default function Home() {
       <div>
         <Hero />
       </div>
-      <div>
+      <div className="min-h-screen">
         <FamousPlace/>
       </div>
-      <div>
+      <div className="min-h-screen">
         <About/>
       </div>
       <div>

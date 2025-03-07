@@ -1,175 +1,47 @@
-// 'use client'
-// import React, { useState } from 'react'
-// import { Input } from './ui/input'
-// import { Button } from './ui/button'
-// import { IoSearchSharp } from "react-icons/io5";
-// import {
-//     Select,
-//     SelectContent,
-//     SelectItem,
-//     SelectTrigger,
-//     SelectValue,
-// } from "@/components/ui/select"
-// import { chatSession } from '@/Services/aimodel';
-// import { useRouter } from 'next/navigation';
-// import { TbFidgetSpinner } from "react-icons/tb";
-// import { doc, setDoc } from "firebase/firestore"; 
-// import { db as fireDb } from '@/Services/FirebaseConfig';
-// import {v4 as uuidv4} from 'uuid'
-// import {useSession} from 'next-auth/react'
-// import { db as postDb } from '@/app/Database';
-// import { trips } from '@/app/Database/schema';
+import React from 'react'
+import { Input } from './ui/input'
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
+import { Button } from './ui/button'
 
-// interface FormData {
-//     destination: string,
-//     nod: number,
-//     budget: string,
-//     comapanions: string
-// }
+const SearchForm = () => {
+    return (
+        <div className='flex justify-center'>
+        <div className='p-10 bg-white shadow-2xl flex justify-center rounded-3xl w-[400px] md:w-[1000px]'>
+            <form action="" className='flex flex-col md:flex-row items-center gap-4 justify-center border-black border-2 rounded-xl  md:rounded-full bg-yellow-50 w-[950px] p-12 md:p-8 text-white font-medium'>
+                <div>
+                    <Input placeholder='Destination' className='bg-white text-black' type='text' />
+                </div>
+                <div>
+                    <Input placeholder='Number of People' className='bg-white text-black' type='number' min={1} />
+                </div>
+                <div>
+                    <Select>
+                        <SelectTrigger className=" w-[220px] md:w-[200px] bg-white text-black">
+                            <SelectValue placeholder="Budget" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="Low">Low</SelectItem>
+                            <SelectItem value="Medium">Medium</SelectItem>
+                            <SelectItem value="High">High</SelectItem>
+                        </SelectContent>
+                    </Select>
+                </div>
+                <div>
+                    <Input placeholder='Duration' type='number' min={1} className='bg-white text-black'/>
+                </div>
+                <div>
+                    <Button className='bg-yellow-300 text-black'>Generate</Button>
+                </div>
+            </form>
+        </div>
+        </div>
+    )
+}
 
-
-  
-
-// const SearchForm = () => {
-//     const router = useRouter()
-//     const {data :session} = useSession()
-//     const promt = "Generate Travel Plan for Location: {location} for {days} Days for {companions} with a {budget} budget, Give me a  itinerary with placeName, Place Details, ticket Pricing(if not available type - Check Official website), Time  travel each of the location for 3 days with each day plan with best time to visit in and also speciallity of the location the user has requested like {location} in this case like transportation, food, clothes, etc JSON format."
-//     const [formData, setFormData] = useState<FormData>({
-//         destination: '',
-//         nod: 0,
-//         budget: '',
-//         comapanions: ''
-//     })
-//     const [loading, setLoading] = useState(false);
-
-//     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-//         const { name, value } = e.target
-//         setFormData((prev) => (
-//             {
-//                 ...prev,
-//                 [name]: value
-//             }
-//         ))
-
-//     }
-
-//     const handleSelectChange = (name: keyof FormData, value: string) => {
-//         setFormData((prev) => (
-//             {
-//                 ...prev,
-//                 [name]: value
-//             }
-//         ))
-//     }
-
-//     const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
-//         e.preventDefault()
-//         setLoading(true);
-//         try {
-//             console.log(formData)
-//             const Final_Prompt = promt
-//                 .replace('{location}', formData?.destination)
-//                 .replace('{days}', String(formData?.nod))
-//                 .replace('{companions}', formData?.comapanions)
-//                 .replace('{budget}', formData?.budget)
-//             console.log(Final_Prompt)
-
-//             const result = await chatSession.sendMessage(Final_Prompt)
-//             console.log(result?.response?.text())
-//             const resultText = await result.response.text();
-//             console.log(resultText)
-//             const docId = Date.now().toString()
-//             const resultJson = JSON.parse(resultText)
-//             SaveTrip(resultJson,docId)
-//             if(session?.user?.id){
-//                 await postDb.insert(trips).values({
-//                     tripId:docId,
-//                     userId : session.user.id
-//                 })
-//             }
-
-//             // Navigate to the dynamic page with the result as a query parameter
-//             router.push(`/Trip/${docId}`);
-//         } catch (err) {
-//             console.log("There has been an error ", err)
-//         } finally {
-//             setLoading(false)
-//         }
-//     }
-
-//     const SaveTrip = async(TripData :string ,docId : string) => {
-//         let userInformation
-//         if (session?.user){
-//             userInformation = session.user
-//         }else{
-//             userInformation = uuidv4()
-//         }
-//         await setDoc(doc(fireDb, "AITrips", docId), {
-//             userSelection : formData,
-//             tripData : TripData,
-//             userInfo : userInformation,
-//             id : docId
-//           });
-//     }
-
-//     return (
-//         <form
-//             onSubmit={handleSubmit}
-//             className='p-5 flex flex-col md:flex-row gap-1 bg-white rounded-2xl md:rounded-full mt-20 border-[2px] border-black'>
-//             <Input
-//                 type='text'
-//                 placeholder='Destination'
-//                 className='rounded-full w-[200px]'
-//                 name='destination'
-//                 value={formData.destination}
-//                 onChange={handleChange}
-
-//             />
-
-//             <Input
-//                 type='number'
-//                 placeholder='Number of Days'
-//                 className='rounded-full w-[200px]'
-//                 name='nod'
-//                 value={formData.nod}
-//                 onChange={handleChange}
-
-//             />
-//             <Select onValueChange={(value) => handleSelectChange('budget', value)}>
-//                 <SelectTrigger className="w-full md:w-[180px] rounded-full">
-//                     <SelectValue placeholder="Budget" />
-//                 </SelectTrigger>
-//                 <SelectContent>
-//                     <SelectItem value="Cheap">Cheap</SelectItem>
-//                     <SelectItem value="Moderate">Moderate</SelectItem>
-//                     <SelectItem value="Luxury">Luxury</SelectItem>
-//                 </SelectContent>
-//             </Select>
-
-//             <Select onValueChange={(value) => handleSelectChange('comapanions', value)} >
-//                 <SelectTrigger className="w-full md:w-[180px] rounded-full">
-//                     <SelectValue placeholder="Companions" />
-//                 </SelectTrigger>
-//                 <SelectContent>
-//                     <SelectItem value="Me">Just Me</SelectItem>
-//                     <SelectItem value="Couple">A Couple</SelectItem>
-//                     <SelectItem value="Family">Family</SelectItem>
-//                     <SelectItem value="Friends">Friends</SelectItem>
-//                 </SelectContent>
-//             </Select>
-//             <Button type="submit" disabled={loading} className='rounded-full bg-yellow-400 text-black hover:bg-red-600 hover:text-yellow-400' >
-//                 {loading ? (
-//                     <TbFidgetSpinner className='animate-spin text-black' />
-//                 ) : (
-//                     <>
-//                         Generate
-//                         <IoSearchSharp />
-//                     </>
-//                 )}
-//             </Button>
-//         </form>
-//     );
-// }
-
-// export default SearchForm;
-
+export default SearchForm
