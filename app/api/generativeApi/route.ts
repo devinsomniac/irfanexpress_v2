@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { error } from "console";
 
 export const POST = async(req:NextRequest) => {
     const genAiApi = process.env.GEMINI_API!
@@ -20,7 +21,7 @@ export const POST = async(req:NextRequest) => {
             travelPlan = JSON.parse(responseText)
         }catch(parseError){
             return NextResponse.json(
-                {message : "Parse Error",rawResponse: responseText},
+                {message :parseError,rawResponse: responseText},
                 {status:200}
             )
         }
