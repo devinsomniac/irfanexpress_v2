@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { error } from "console";
 
 export const POST = async(req:NextRequest) => {
     const genAiApi = process.env.GEMINI_API!
@@ -31,7 +30,7 @@ export const POST = async(req:NextRequest) => {
         )
     }catch(err){
         return NextResponse.json(
-            {message : "There has been an error in generating"},
+            {message : err},
             {status:500}
         )
     }
