@@ -16,10 +16,11 @@ const Page = async ({
   searchParams,
 }: {
   params: Promise<{ id: string }>;
-  searchParams: { data?: string };
+  searchParams: Promise<{ data?: string }>;
 }) => {
   let travelPlanData: TravelPlanData | null = null;
   const { id } = await params
+  const {data} = await searchParams
   if (id !== "preview") {
     const savedPlan = await db
       .select()
@@ -29,8 +30,8 @@ const Page = async ({
     if (savedPlan.length > 0) {
       travelPlanData = savedPlan[0];
     }
-  } else if (searchParams.data) {
-    travelPlanData = JSON.parse(decodeURIComponent(searchParams.data));
+  } else if (data) {
+    travelPlanData = JSON.parse(decodeURIComponent(data));
   }
 
   if (!travelPlanData) {
