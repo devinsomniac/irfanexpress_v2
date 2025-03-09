@@ -28,9 +28,8 @@ export const POST = async (req: NextRequest) => {
           "accommodation": { "type": "string", "cost": "string", "recommendations": ["string"], "tips": ["string"] },
           "transportation": { "type": "string", "cost": "string", "tips": ["string"] }
         }
-        Ensure all fields are present, even if empty (e.g., use empty arrays or strings). Include normal tips for each activity and use the local currency of the destination country.`        console.time("GenerateContent");
+        Ensure all fields are present, even if empty (e.g., use empty arrays or strings). Include normal tips for each activity and use the local currency of the destination country.` 
         const result = await model.generateContent(prompt);
-        console.timeEnd("GenerateContent");
         let responseText = result.response.text()
         responseText = responseText
             .trim()
