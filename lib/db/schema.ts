@@ -5,6 +5,7 @@ import {
     text,
     primaryKey,
     integer,
+    jsonb,
   } from "drizzle-orm/pg-core"
   import type { AdapterAccountType } from "next-auth/adapters"
 
@@ -77,6 +78,33 @@ import {
     ]
   )
 
-  export const travelPlan = pgTable("travelPlan",{
-    
-  })
+
+export interface PlanDetails {
+  tripName: string;
+  destination: string;
+  duration: string | number;
+  travelers: number | string;
+  budget: string | { category: string; currency: string };
+  dailyBudgetPerPerson?: string;
+  itinerary: {
+    day: number;
+    theme: string;
+    activities: { name: string; time: string; cost: number | string; tips?: string[] }[];
+  }[];
+  accommodation: { type: string; cost?: string; cost_per_night?: string; recommendations?: string[]; tips?: string[] };
+  transportation: { type?: string; description?: string; cost?: string; estimated_cost_per_day?: string; tips?: string[] };
+  important_notes?: string[];
+  food?: { style?: string; estimated_cost_per_day?: string; recommendations?: string[]; tips?: string[] };
+  currency?: string;
+}
+
+export const travelPlan = pgTable("travelPlan", {
+  planId: text("planId").primaryKey().$defaultFn(() => crypto.randomUUID()),
+  userId: text("userId").notNull(),
+  destination: text("destination").notNull(),
+  groupSize: integer("groupSize").notNull(),
+  budget: text("budget").notNull(),
+  duration: integer("duration").notNull(),
+  planDetails: jsonb("planDetails").$type<PlanDetails>().notNull(),
+  createdAt: timestamp("createdAt", { mode: "date" }).defaultNow().notNull(),
+});

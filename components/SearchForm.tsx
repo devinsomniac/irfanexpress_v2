@@ -9,8 +9,10 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import { Button } from './ui/button'
+import { useRouter } from 'next/navigation'
 
 const SearchForm = () => {
+    const router = useRouter()
     const [formData,setFormData] = useState({
         destination : "",
         group : "",
@@ -48,6 +50,13 @@ const SearchForm = () => {
             if (response.ok) {
                 const data = await response.json()
                 console.log("API Response:", data)
+                const { planId } = data.data;
+                if(planId ){
+                    router.push(`/travelPlan/${planId}`)
+                }else{
+                    router.push(`/travelPlan/preview?data=${encodeURIComponent(JSON.stringify(data.data))}`)
+                    console.log(data.data)
+                }
             } else {
                 console.log("There has been an error:", response.status)
             }
