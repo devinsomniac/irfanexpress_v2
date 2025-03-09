@@ -15,16 +15,16 @@ const Page = async ({
   params,
   searchParams,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
   searchParams: { data?: string };
 }) => {
   let travelPlanData: TravelPlanData | null = null;
-
-  if (params.id !== "preview") {
+  const { id } = await params
+  if (id !== "preview") {
     const savedPlan = await db
       .select()
       .from(travelPlan)
-      .where(eq(travelPlan.planId, params.id))
+      .where(eq(travelPlan.planId, id))
       .limit(1);
     if (savedPlan.length > 0) {
       travelPlanData = savedPlan[0];
