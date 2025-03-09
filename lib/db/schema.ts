@@ -76,3 +76,7 @@ import {
       },
     ]
   )
+
+  export const travelPlan = pgTable("travelPlan",{
+    
+  })

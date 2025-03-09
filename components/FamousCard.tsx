@@ -20,7 +20,7 @@ const FamousCard = ({ place }: { place: FamousPlaceType }) => {
     </div>
     <p className='text-sm mt-2 text-gray-700 font-bold'>{place.type}</p>
     <div className='flex justify-between'>
-        <h2 className='text-2xl'>{place.name}</h2>
+        <h2 className='text-2xl font-bold'>{place.name}</h2>
         <div className='flex items-center gap-1'>
             <PiUsersFill />
             {place.group}
