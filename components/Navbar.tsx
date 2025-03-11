@@ -24,16 +24,16 @@ const Navbar = async () => {
       </div>
       <div className='hidden md:block'>
         <ul className=' flex justify-center items-start gap-3 text-black font-medium'>
-          <li>Home</li>
-          <li>About</li>
+          <li> <Link href={'/'}>Home</Link></li>
+          <li><Link href={'/About'}>About</Link></li>
           {session && (
             <>
             <li><Link href={`/Profile/${session?.user?.id}`}>Profile</Link> </li>
             </>
           )}
-          <li>Umrah</li>
-          <li>Contact Us</li>
-          <li>Blogs</li>
+          <li><Link href={'/Umrah'}>Umrah</Link></li>
+          <li><Link href={'/Contact'}>Contact Us</Link></li>
+          <li><Link href={'/Blog'} aria-disabled >Blogs</Link></li>
         </ul>
       </div>
       <div className='hidden md:block'>
