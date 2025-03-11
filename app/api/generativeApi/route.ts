@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { auth } from "@/auth";
 import { db } from "@/lib/db";
+import { travelPlan } from "@/lib/db/schema";
 
 export const POST = async (req: NextRequest) => {
     const genAiApi = process.env.GEMINI_API!
@@ -35,9 +36,9 @@ export const POST = async (req: NextRequest) => {
             .trim()
             .replace(/^```json\s*\n/, '')
             .replace(/\n\s*```$/, '');
-        let travelPlan
+        let travelPlanDetails
         try {
-            travelPlan = JSON.parse(responseText)
+            travelPlanDetails = JSON.parse(responseText)
         } catch (parseError) {
             return NextResponse.json(
                 { message: parseError, rawResponse: responseText },
@@ -49,10 +50,10 @@ export const POST = async (req: NextRequest) => {
             const savedPlan = await db.insert(travelPlan).values({
                 userId: session?.user?.id,
                 destination,
-                group,
+                groupSize : group,
                 budget,
                 duration,
-                planDetails: travelPlan,
+                planDetails: travelPlanDetails,
 
             }).returning({planId : travelPlan.planId})
 
@@ -74,7 +75,7 @@ export const POST = async (req: NextRequest) => {
                     groupSize: group,
                     budget,
                     duration,
-                    planDetails: travelPlan,
+                    planDetails: travelPlanDetails,
                 }
             },
             { status: 200 }

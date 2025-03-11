@@ -18,6 +18,7 @@ import {
     email: text("email").unique(),
     emailVerified: timestamp("emailVerified", { mode: "date" }),
     image: text("image"),
+    bio : text("bio")
   })
    
   export const accounts = pgTable(

@@ -11,4 +11,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     sessionsTable: sessions,
   }),
   providers: [Google],
+  callbacks:{
+    authorized:async({auth})=>{
+      return !!auth?.user
+    }
+  }
 })

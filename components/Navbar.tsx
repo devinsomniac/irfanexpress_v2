@@ -12,6 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { GiHamburgerMenu } from "react-icons/gi";
+import Link from 'next/link';
 
 
 const Navbar = async () => {
@@ -27,8 +28,7 @@ const Navbar = async () => {
           <li>About</li>
           {session && (
             <>
-            <li>Profile</li>
-            <li>Itineraries</li>
+            <li><Link href={`/Profile/${session?.user?.id}`}>Profile</Link> </li>
             </>
           )}
           <li>Umrah</li>
@@ -83,7 +83,6 @@ const Navbar = async () => {
             <DropdownMenuItem>Home</DropdownMenuItem>
             <DropdownMenuItem>About</DropdownMenuItem>
             <DropdownMenuItem>Profile</DropdownMenuItem>
-            <DropdownMenuItem>Itineraries</DropdownMenuItem>
             <DropdownMenuItem>Contact Us</DropdownMenuItem>
             <DropdownMenuItem>Umrah</DropdownMenuItem>
             <DropdownMenuItem>Blogs</DropdownMenuItem>
