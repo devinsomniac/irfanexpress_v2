@@ -14,7 +14,10 @@ const page = () => {
         <h1 className='font-medium text-3xl md:text-6xl text-center p-6'><span className='text-blue-600'>Irfan</span><span className='text-orange-600'>Express</span></h1>
         <Separator className='w-[180px] bg-orange-600 h-[6px] rounded-full my-2' />
         </div>
-        
+         <div className='p-4 flex flex-col justify-start items-start'>
+                <h1 className='font-medium text-4xl text-left'>About</h1>
+                <Separator className='w-[180px] bg-orange-600 h-[6px] rounded-full my-2' />
+                </div>
         <div className='grid grid-cols-1 md:grid-cols-2 p-4 gap-4 mb-2'>
           <div className='flex justify-center items-center'>
             <p className='md:text-2xl'>

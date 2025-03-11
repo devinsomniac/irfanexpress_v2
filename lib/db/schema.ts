@@ -109,3 +109,11 @@ export const travelPlan = pgTable("travelPlan", {
   planDetails: jsonb("planDetails").$type<PlanDetails>().notNull(),
   createdAt: timestamp("createdAt", { mode: "date" }).defaultNow().notNull(),
 });
+
+export const queries = pgTable('queries',{
+  name : text('name').notNull(),
+  phone : text('phone').notNull(),
+  email : text('email'),
+  queriess : text('queriess'),
+  createdAt: timestamp("createdAt", { mode: "date" }).defaultNow().notNull(),
+})

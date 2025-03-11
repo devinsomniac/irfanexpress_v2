@@ -20,7 +20,10 @@ const Navbar = async () => {
   return (
     <div className='p-2 flex justify-between items-center'>
       <div>
+        <Link href={'/'}>
         <Image src={'/logo.png'} alt='logo' height={100} width={100} />
+        </Link>
+        
       </div>
       <div className='hidden md:block'>
         <ul className=' flex justify-center items-start gap-3 text-black font-medium'>
@@ -33,7 +36,7 @@ const Navbar = async () => {
           )}
           <li><Link href={'/Umrah'}>Umrah</Link></li>
           <li><Link href={'/Contact'}>Contact Us</Link></li>
-          <li><Link href={'/Blog'} aria-disabled >Blogs</Link></li>
+          {/* <li><Link href={'/Blog'} aria-disabled >Blogs</Link></li> */}
         </ul>
       </div>
       <div className='hidden md:block'>
@@ -85,7 +88,7 @@ const Navbar = async () => {
             <DropdownMenuItem>Profile</DropdownMenuItem>
             <DropdownMenuItem>Contact Us</DropdownMenuItem>
             <DropdownMenuItem>Umrah</DropdownMenuItem>
-            <DropdownMenuItem>Blogs</DropdownMenuItem>
+            {/* <DropdownMenuItem>Blogs</DropdownMenuItem> */}
             <DropdownMenuItem>
             <form action={async () => {
               "use server"
