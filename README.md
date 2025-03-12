@@ -1,6 +1,7 @@
 # Irfan Express - AI-Powered Travel Planning
 
 ![Irfan Express Logo](/public/logo.png)
+[**Live Demo: irfanexpress.fun**](https://irfanexpress.fun)
 
 **Irfan Express** is a modern travel agency web application designed to create personalized travel itineraries using AI. Whether you're planning a spiritual pilgrimage like Hajj/Umrah or a leisure trip to vibrant destinations like Singapore, Malaysia, Thailand, or Nepal, Irfan Express leverages cutting-edge technology to craft detailed travel plans based on your preferences. Simply input your destination, group size, number of days, and budget (Low, Medium, or High), and let our AI-powered system, built with Gemini AI Flash 2.0, generate a tailored plan for you. With **NextAuth.js**, users can authenticate via Google OAuth, and their travel plans are securely stored in a **PostgreSQL** database for easy access.
 
@@ -120,6 +121,7 @@ This project is built with **Next.js**, styled with **Tailwind CSS**, and deploy
 1. ![Home 1](/public/screenshots/Home.png)
 2. ![Home 2](/public/screenshots/Home2.png)
 3. ![Home 3](/public/screenshots/Home3.png)
+4. ![Home 4](/public/screenshots/Home4.png)
 
 **Profile Page**
 
