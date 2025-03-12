@@ -105,11 +105,11 @@ const Navbar = async () => {
           <DropdownMenuContent className='mr-5 text-black font-medium'>
             <DropdownMenuLabel>Welcome, {session?.user?.name}</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Home</DropdownMenuItem>
-            <DropdownMenuItem>About</DropdownMenuItem>
-            <DropdownMenuItem>Profile</DropdownMenuItem>
-            <DropdownMenuItem>Contact Us</DropdownMenuItem>
-            <DropdownMenuItem>Umrah</DropdownMenuItem>
+            <Link href={'/'}><DropdownMenuItem>Home</DropdownMenuItem></Link>
+            <Link href={'/About'}><DropdownMenuItem>About</DropdownMenuItem></Link>
+            <Link href={`/Profile/${session?.user?.id}`}><DropdownMenuItem>Profile</DropdownMenuItem></Link>
+            <Link href={'/Contact'}><DropdownMenuItem>Contact Us</DropdownMenuItem></Link>
+            <Link href={'/Umrah'}><DropdownMenuItem>Umrah</DropdownMenuItem></Link>
             {/* <DropdownMenuItem>Blogs</DropdownMenuItem> */}
             <DropdownMenuItem>
             <form action={async () => {
@@ -148,11 +148,11 @@ const Navbar = async () => {
             </Button>
           </form>
             </DropdownMenuItem>
-            <DropdownMenuItem>Home</DropdownMenuItem>
-            <DropdownMenuItem>About</DropdownMenuItem>
-            <DropdownMenuItem>Contact Us</DropdownMenuItem>
-            <DropdownMenuItem>Umrah</DropdownMenuItem>
-            <DropdownMenuItem>Blogs</DropdownMenuItem>
+            <Link href={'/'}><DropdownMenuItem>Home</DropdownMenuItem></Link>
+            <Link href={'/About'}><DropdownMenuItem>About</DropdownMenuItem></Link>
+            <Link href={'/Contact'}><DropdownMenuItem>Contact Us</DropdownMenuItem></Link>
+            <Link href={'/Umrah'}><DropdownMenuItem>Umrah</DropdownMenuItem></Link>
+            {/* <DropdownMenuItem>Blogs</DropdownMenuItem> */}
           </DropdownMenuContent>
         </DropdownMenu>
         )}
