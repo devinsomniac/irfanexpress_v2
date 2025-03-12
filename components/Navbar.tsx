@@ -28,36 +28,36 @@ const Navbar = async () => {
     <div className='p-2 flex justify-between items-center'>
       <div>
         <Link href={'/'}>
-        <Image src={'/logo.png'} alt='logo' height={100} width={100} />
+          <Image src={'/logo.png'} alt='logo' height={100} width={100} />
         </Link>
-        
+
       </div>
       <div className='hidden md:block'>
         <div className=' flex justify-center items-start gap-3 text-gray-800 font-medium'>
           <div className='flex justify-center items-center'>
-            <CiHome className='mb-1 text-orange-600'/>
-            <Link href={'/'}>Home</Link> 
+            <CiHome className='mb-1 text-orange-600' />
+            <Link href={'/'}>Home</Link>
           </div>
           <div className='flex justify-center items-center '>
-            <IoIosInformationCircleOutline className='text-xl mb-1 text-orange-600'/>
+            <IoIosInformationCircleOutline className='text-xl mb-1 text-orange-600' />
             <Link href={'/About'}>About</Link>
-            </div>
+          </div>
           {session && (
             <>
-            <div className='flex justify-center items-center '>
-              <FaRegUser className='mb-1 text-orange-600'/>
-              <Link href={`/Profile/${session?.user?.id}`}>Profile</Link> 
+              <div className='flex justify-center items-center '>
+                <FaRegUser className='mb-1 text-orange-600' />
+                <Link href={`/Profile/${session?.user?.id}`}>Profile</Link>
               </div>
             </>
           )}
           <div className='flex justify-center items-center'>
-            <FaRegMoon className='mb-1 text-orange-600'/>
+            <FaRegMoon className='mb-1 text-orange-600' />
             <Link href={'/Umrah'}>Umrah</Link>
-            </div>
+          </div>
           <div className='flex justify-center items-center'>
-            <IoCallOutline className='mb-1 text-lg text-orange-600'/>
+            <IoCallOutline className='mb-1 text-lg text-orange-600' />
             <Link href={'/Contact'}>Contact Us</Link>
-            </div>
+          </div>
           {/* <li><Link href={'/Blog'} aria-disabled >Blogs</Link></li> */}
         </div>
       </div>
@@ -99,64 +99,66 @@ const Navbar = async () => {
       <div className='block md:hidden'>
         {session && session?.user?.name ? (
           <DropdownMenu>
-          <DropdownMenuTrigger>
-            <Image src={session?.user?.image as string} alt='user Logo' height={50} width={50} className='border-2 border-gray-700 rounded-full' />
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className='mr-5 text-black font-medium'>
-            <DropdownMenuLabel>Welcome, {session?.user?.name}</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <Link href={'/'}><DropdownMenuItem>Home</DropdownMenuItem></Link>
-            <Link href={'/About'}><DropdownMenuItem>About</DropdownMenuItem></Link>
-            <Link href={`/Profile/${session?.user?.id}`}><DropdownMenuItem>Profile</DropdownMenuItem></Link>
-            <Link href={'/Contact'}><DropdownMenuItem>Contact Us</DropdownMenuItem></Link>
-            <Link href={'/Umrah'}><DropdownMenuItem>Umrah</DropdownMenuItem></Link>
-            {/* <DropdownMenuItem>Blogs</DropdownMenuItem> */}
-            <DropdownMenuItem>
-            <form action={async () => {
-              "use server"
-              await signOut({ redirectTo: "/" })
-            }} className='w-full'>
-              <Button variant={'outline'} className='rounded-full border border-black w-full'>
-                <MdLogout />
-              </Button>
-            </form>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-        ):
-        (
-<DropdownMenu>
-          <DropdownMenuTrigger>
-          <GiHamburgerMenu />
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className='mr-5 text-black font-medium'>
-            <DropdownMenuLabel>Welcome</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>
-            <form
-            action={async () => {
-              "use server";
-              await signIn("google");
-            }}
-          >
-            <Button
-              type="submit"
-              variant={'outline'}
-              className="border rounded-full border-black"
-            >
-              Log In
-            </Button>
-          </form>
-            </DropdownMenuItem>
-            <Link href={'/'}><DropdownMenuItem>Home</DropdownMenuItem></Link>
-            <Link href={'/About'}><DropdownMenuItem>About</DropdownMenuItem></Link>
-            <Link href={'/Contact'}><DropdownMenuItem>Contact Us</DropdownMenuItem></Link>
-            <Link href={'/Umrah'}><DropdownMenuItem>Umrah</DropdownMenuItem></Link>
-            {/* <DropdownMenuItem>Blogs</DropdownMenuItem> */}
-          </DropdownMenuContent>
-        </DropdownMenu>
-        )}
-        
+            <DropdownMenuTrigger>
+              <Image src={session?.user?.image as string} alt='user Logo' height={50} width={50} className='border-2 border-gray-700 rounded-full' />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className='mr-5 text-black font-medium'>
+              <DropdownMenuLabel>Welcome, {session?.user?.name}</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <Link href={'/'}><DropdownMenuItem className='flex gap-1'><CiHome className='mb-1 text-orange-600' />Home</DropdownMenuItem></Link>
+              <Link href={'/About'}><DropdownMenuItem className='flex gap-1'><IoIosInformationCircleOutline className='text-xl mb-1 text-orange-600' />About</DropdownMenuItem></Link>
+              <Link href={`/Profile/${session?.user?.id}`}><DropdownMenuItem className='flex gap-1'><FaRegUser className='mb-1 text-orange-600' />Profile</DropdownMenuItem></Link>
+              <Link href={'/Umrah'}><DropdownMenuItem className='flex gap-1'><FaRegMoon className='mb-1 text-orange-600' />Umrah</DropdownMenuItem></Link>
+              <Link href={'/Contact'}><DropdownMenuItem className='flex gap-1'><IoCallOutline className='mb-1 text-lg text-orange-600' />Contact Us</DropdownMenuItem></Link>
+
+              {/* <DropdownMenuItem>Blogs</DropdownMenuItem> */}
+              <DropdownMenuItem>
+                <form action={async () => {
+                  "use server"
+                  await signOut({ redirectTo: "/" })
+                }} className='w-full'>
+                  <Button variant={'outline'} className='rounded-full border border-black w-full'>
+                    <MdLogout />
+                  </Button>
+                </form>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        ) :
+          (
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <GiHamburgerMenu />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className='mr-5 text-black font-medium'>
+                <DropdownMenuLabel>Welcome</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  <form
+                    action={async () => {
+                      "use server";
+                      await signIn("google");
+                    }}
+                  >
+                    <Button
+                      type="submit"
+                      variant={'outline'}
+                      className="border rounded-full border-black"
+                    >
+                      Log In
+                    </Button>
+                  </form>
+                </DropdownMenuItem>
+                <Link href={'/'}><DropdownMenuItem className='flex gap-1'><CiHome className='mb-1 text-orange-600' />Home</DropdownMenuItem></Link>
+                <Link href={'/About'}><DropdownMenuItem className='flex gap-1'><IoIosInformationCircleOutline className='text-xl mb-1 text-orange-600' />About</DropdownMenuItem></Link>
+                <Link href={'/Umrah'}><DropdownMenuItem className='flex gap-1'><FaRegMoon className='mb-1 text-orange-600' />Umrah</DropdownMenuItem></Link>
+                <Link href={'/Contact'}><DropdownMenuItem className='flex gap-1'><IoCallOutline className='mb-1 text-lg text-orange-600' />Contact Us</DropdownMenuItem></Link>
+
+                {/* <DropdownMenuItem>Blogs</DropdownMenuItem> */}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          )}
+
       </div>
     </div>
   )
