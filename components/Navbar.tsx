@@ -13,6 +13,13 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { GiHamburgerMenu } from "react-icons/gi";
 import Link from 'next/link';
+import { CiHome } from "react-icons/ci";
+import { IoIosInformationCircleOutline } from "react-icons/io";
+import { FaRegUser } from "react-icons/fa";
+import { FaRegMoon } from "react-icons/fa";
+import { IoCallOutline } from "react-icons/io5";
+
+
 
 
 const Navbar = async () => {
@@ -26,18 +33,33 @@ const Navbar = async () => {
         
       </div>
       <div className='hidden md:block'>
-        <ul className=' flex justify-center items-start gap-3 text-black font-medium'>
-          <li> <Link href={'/'}>Home</Link></li>
-          <li><Link href={'/About'}>About</Link></li>
+        <div className=' flex justify-center items-start gap-3 text-gray-800 font-medium'>
+          <div className='flex justify-center items-center'>
+            <CiHome className='mb-1 text-orange-600'/>
+            <Link href={'/'}>Home</Link> 
+          </div>
+          <div className='flex justify-center items-center '>
+            <IoIosInformationCircleOutline className='text-xl mb-1 text-orange-600'/>
+            <Link href={'/About'}>About</Link>
+            </div>
           {session && (
             <>
-            <li><Link href={`/Profile/${session?.user?.id}`}>Profile</Link> </li>
+            <div className='flex justify-center items-center '>
+              <FaRegUser className='mb-1 text-orange-600'/>
+              <Link href={`/Profile/${session?.user?.id}`}>Profile</Link> 
+              </div>
             </>
           )}
-          <li><Link href={'/Umrah'}>Umrah</Link></li>
-          <li><Link href={'/Contact'}>Contact Us</Link></li>
+          <div className='flex justify-center items-center'>
+            <FaRegMoon className='mb-1 text-orange-600'/>
+            <Link href={'/Umrah'}>Umrah</Link>
+            </div>
+          <div className='flex justify-center items-center'>
+            <IoCallOutline className='mb-1 text-lg text-orange-600'/>
+            <Link href={'/Contact'}>Contact Us</Link>
+            </div>
           {/* <li><Link href={'/Blog'} aria-disabled >Blogs</Link></li> */}
-        </ul>
+        </div>
       </div>
       <div className='hidden md:block'>
         {session && session.user?.name ? (
@@ -66,7 +88,7 @@ const Navbar = async () => {
             <Button
               type="submit"
               variant={'outline'}
-              className="border rounded-full border-black"
+              className="rounded-full bg-orange-500 hover:bg-orange-600"
             >
               Log In
             </Button>

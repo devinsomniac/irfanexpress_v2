@@ -1,22 +1,27 @@
 import React from 'react'
 import { RiScrollToBottomFill } from "react-icons/ri";
 import HeroImageUrl from '@/public/HeroImages/HeroImagesArray'
+import { LuSparkles } from "react-icons/lu";
+
 const Hero = () => {
   const randomImage = HeroImageUrl[1];
   return (
-    <div className='py-8 flex justify-center items-center flex-col min-h-[calc(100vh-80px)] md:min-h-[calc(100vh-60px)] '
+    <div className='py-8 flex justify-center items-center flex-col min-h-[calc(100vh-80px)] md:min-h-[calc(100vh-60px)] overflow-hidden '
     style={{
-      backgroundImage: `url(${randomImage})`,
+      backgroundImage: `url('/HeroBg.jpg')`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       height: '95vh',
     }}
     >
-        <div className='md:mt-8 font-bold flex flex-col text-[#ffe900] px-4'>
-            <h1 className='text-xl  mb-2 md:text-6xl text-left'>Create a <span className='text-[#fffbcc] bg-blue-950 p-1 rounded-lg'>personalized itinerary</span>  </h1>
-            <h2 className='text-xl md:text-4xl text-left mt-2 md:mt-12'><span className='text-[#fffbcc] bg-blue-950 p-1 rounded-lg'>for your <span className='text-[#ffe900]'>dream vacation.</span> </span></h2>
-            <h3 className='text-xl md:text-2xl text-left mt-2 md:mt-12 text-[#ffe900]'><span className='bg-blue-950 p-1'>With Us.</span></h3>
-        </div>
+      <div className='w-full px-6 mt-36 md:mt-28 flex justify-center items-center'>
+        <h1 className='text-white text-3xl md:text-6xl font-bold text-center'>
+          Create your <span className='text-sky-400 font-bold md:text-blue-950 text-4xl md:text-8xl'>perfect travel</span> plan with us using cutting-edge <span className='text-4xl md:text-8xl text-sky-400'>AI!</span> 
+        </h1>
+      </div>
+      <div className='w-full flex justify-center items-center '>
+      <LuSparkles className='text-blue-700 text-4xl md:text-8xl animate-bounce' />
+      </div>
         <div className='h-[250px] flex justify-center items-center'>
         <RiScrollToBottomFill  className='text-yellow-400 font-medium text-4xl md:text-7xl border rounded-full animate-ping'/>
         </div>

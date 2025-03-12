@@ -35,7 +35,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
       </div>
 
       <div className='p-10 grid grid-cols-1 md:grid-cols-3 md:mt-20 gap-4'>
-        <div className='col-span-1 p-4 rounded-3xl shadow-2xl h-[300px] flex flex-col'>
+        <div className='col-span-1 p-4 rounded-3xl shadow-2xl h-[300px] flex flex-col border'>
         <h2 className='font-bold text-blue-700 text-4xl'>Profile</h2>
         <Separator className='w-[180px] bg-orange-600 h-[6px] rounded-full my-2' />
             <h2 className='text-2xl '>{session?.user?.name}</h2>
@@ -46,7 +46,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
             <Button className='bg-yellow-400 text-black hover:bg-orange-600 my-2'>Save Bio</Button>
             </form>
         </div>
-        <div className='col-span-2 p-4 rounded-3xl shadow-2xl'>
+        <div className='col-span-2 p-4 rounded-3xl shadow-2xl border'>
           <h2 className='font-bold text-blue-700 text-4xl'>You Adventure Plans Are Below:</h2>
           <Separator className='w-[180px] bg-orange-600 h-[6px] rounded-full my-2' />
           <ProfilePlanCard data={data} />

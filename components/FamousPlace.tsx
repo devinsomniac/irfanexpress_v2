@@ -66,7 +66,7 @@ const FamousPlace = () => {
         <SearchForm />
       </div>
       <div className="py-6 mt-6">
-        <h2 className='text-center text-4xl font-bold'>Popular Destinations You can Travel !!</h2>
+        <h2 className='text-center text-4xl font-bold'>Popular <span className="text-orange-600">Destinations</span> You can Travel !!</h2>
         <div className="flex justify-center items-center">
           <div className=' grid grid-cols-1 md:grid-cols-4 gap-4'>
             {famousPlace.map((place) => (

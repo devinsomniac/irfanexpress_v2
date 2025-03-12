@@ -14,7 +14,7 @@ type FamousPlaceType = {
 
 const FamousCard = ({ place }: { place: FamousPlaceType }) => {
   return (
-    <div className='p-8 shadow-2xl rounded-3xl h-[350px] border w-full bg-white'>
+    <div className='p-8 shadow-2xl rounded-3xl h-[350px]  w-full '>
       <div className='h-[200px] flex justify-center items-center'>
         <Image src={place.image} alt='offer Image' height={200} width={200} className='object-cover h-full w-full shadow-xl rounded-2xl overflow-hidden' loading='lazy' />
       </div>

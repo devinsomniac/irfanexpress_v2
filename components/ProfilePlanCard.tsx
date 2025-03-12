@@ -15,10 +15,10 @@ type Data = {
 const ProfilePlanCard = ({data}:{data:Data}) => {
   console.log(data)
   return (
-    <div className=' grid grid-cols-1 md:grid-cols-3 gap-3 md:p-8'>
+    <div className=' grid grid-cols-1 md:grid-cols-3 gap-4 md:p-8 '>
         {data.map((plan,index) => (
           <Link href={`/travelPlan/${plan.planId}`} key={index}>
-          <div key={index} className='flex flex-col rounded-3xl shadow-2xl border md:w-[350px]  p-4'>
+          <div key={index} className='flex flex-col rounded-3xl shadow-sm border  hover:shadow-2xl  p-4'>
             <div>
             <Image src={'/RandomImage/Image4.jpg'} alt='Travel Image' height={300} width={300} objectFit='cover' className='rounded-2xl'/>
             </div>
