@@ -32,7 +32,7 @@ const Page = () => {
                   Specializing in comprehensive travel packages, we offer seamless booking services for flights, hotels, and transportation, ensuring a stress-free journey from start to finish.
                 </p>
                 <p>
-                Whether you\'re dreaming of exploring vibrant tourist destinations like Singapore, Malaysia, Thailand, Nepal, or countless other global hotspots, our expert team designs tailor-made packages that align with your budget, preferences, and travel style.                </p>
+                Whether you &apos;re dreaming of exploring vibrant tourist destinations like Singapore, Malaysia, Thailand, Nepal, or countless other global hotspots, our expert team designs tailor-made packages that align with your budget, preferences, and travel style.                </p>
                 <p>
                   At Irfan Express, we take pride in handling every detail of your trip—be it arranging flight tickets, securing hotel accommodations, or curating guided tours—so you can focus on creating unforgettable memories in some of the world’s most breathtaking locations.
                 </p>
@@ -71,7 +71,7 @@ const Page = () => {
                   Our global reach allows us to provide travel solutions for every country, offering diverse options for luxury, mid-range, and budget travelers alike.
                 </p>
                 <p>
-                Whether you\'re seeking a cultural adventure in Nepal, a tropical escape in Thailand, a modern city experience in Singapore, or a spiritual pilgrimage, Irfan Express is your go-to travel agency for personalized, hassle-free, and affordable travel planning that guarantees satisfaction.
+                Whether you &apos;re seeking a cultural adventure in Nepal, a tropical escape in Thailand, a modern city experience in Singapore, or a spiritual pilgrimage, Irfan Express is your go-to travel agency for personalized, hassle-free, and affordable travel planning that guarantees satisfaction.
                 </p>
               </div>
             </div>

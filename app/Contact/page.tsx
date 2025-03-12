@@ -91,7 +91,7 @@ const ContactPage: React.FC = () => {
                 <Alert className="bg-green-100 border-green-400 text-green-700 mb-6">
                   <AlertTitle>Success</AlertTitle>
                   <AlertDescription>
-                    Thank you for your message! We\'ll get back to you soon.
+                    Thank you for your message! We&apos;ll get back to you soon.
                   </AlertDescription>
                 </Alert>
               )}
