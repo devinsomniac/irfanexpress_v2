@@ -73,7 +73,7 @@ const Page = async ({
         {/* Utilities */}
         <div className='grid grid-cols-1 md:grid-cols-3 gap-3'>
           {/* Accommodation Card */}
-          <div className='p-8 shadow-2xl rounded-3xl md:h-[500px] border w-full bg-white flex flex-col gap-2'>
+          <div className='p-8 shadow-2xl rounded-3xl md:h-[600px] border w-full bg-white flex flex-col gap-2'>
             <h1 className='font-bold text-xl text-blue-700'> Your <span className='text-orange-600'>Accommodation</span></h1>
             <div className='h-[200px] w-full flex justify-center items-center mx-auto'>
               <Image
@@ -95,7 +95,7 @@ const Page = async ({
           </div>
 
           {/* Food Card */}
-          <div className='p-8 shadow-2xl rounded-3xl md:h-[500px] border w-full bg-white flex flex-col gap-2'>
+          <div className='p-8 shadow-2xl rounded-3xl md:h-[600px] border w-full bg-white flex flex-col gap-2'>
             <h1 className='font-bold text-2xl text-blue-700'> Your <span className='text-orange-600'>Food</span></h1>
             <div className='h-[200px] w-full flex justify-center items-center'>
               <Image
@@ -121,7 +121,7 @@ const Page = async ({
           </div>
 
           {/* Transportation Card */}
-          <div className='p-8 shadow-2xl rounded-3xl md:h-[500px] border w-full bg-white flex flex-col gap-2'>
+          <div className='p-8 shadow-2xl rounded-3xl md:h-[600px] border w-full bg-white flex flex-col gap-2'>
             <h1 className='font-bold text-2xl text-blue-700'> Your <span className='text-orange-600'>Transportation</span></h1>
             <div className='h-[200px] flex justify-center items-center'>
               <Image src={'/RandomImage/Transport.jpg'} alt='offer Image' height={200} width={200} className='object-cover h-full w-full shadow-xl rounded-2xl overflow-hidden' loading='lazy' />
