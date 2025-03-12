@@ -18,7 +18,7 @@ export async function POST(req: Request) {
     }
 
     // Insert the form data into the database
-    const newQuery = await db
+    await db
       .insert(queries)
       .values({
         name,

@@ -9,13 +9,13 @@ import { travelPlan } from '@/lib/db/schema'
 import { eq } from 'drizzle-orm'
 import ProfilePlanCard from '@/components/ProfilePlanCard'
 
-type dataType = {
-  planId: string; 
-  destination: string; 
-  groupSize: number; 
-  budget: string; 
-  duration: number; 
-  createdAt: Date; }[]
+// type dataType = {
+//   planId: string; 
+//   destination: string; 
+//   groupSize: number; 
+//   budget: string; 
+//   duration: number; 
+//   createdAt: Date; }[]
 
 const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const id = (await params).id

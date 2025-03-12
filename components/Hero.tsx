@@ -1,10 +1,9 @@
 import React from 'react'
 import { RiScrollToBottomFill } from "react-icons/ri";
-import HeroImageUrl from '@/public/HeroImages/HeroImagesArray'
 import { LuSparkles } from "react-icons/lu";
 
 const Hero = () => {
-  const randomImage = HeroImageUrl[1];
+
   return (
     <div className='py-8 flex justify-center items-center flex-col min-h-[calc(100vh-80px)] md:min-h-[calc(100vh-60px)] overflow-hidden '
     style={{
